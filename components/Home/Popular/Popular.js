@@ -6,7 +6,7 @@ import axios from 'axios';
 const Popular = () => {
     const [populars,setPopulars] = useState([])
     useEffect(()=>{
-        axios.get('http://localhost:3000/api/popular')
+        axios.get('/api/popular')
         .then(res=>{
             setPopulars(res.data)
         })
