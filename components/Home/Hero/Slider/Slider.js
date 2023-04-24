@@ -20,7 +20,7 @@ export default function Slider() {
   // files 
   const [files,setFiles] = useState([])
   useEffect(()=>{
-    axios.get(`http://localhost:3000/api/featured`)
+    axios.get(`/api/featured`)
     .then(res=>{
       setFiles(res.data)
       setLoading(false)
