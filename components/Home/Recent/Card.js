@@ -12,7 +12,7 @@ const Card = ({ file }) => {
         onMouseLeave={() => setHover(false)}
         className={`w-full ${
           hover
-            ? "md:h-auto backdrop-blur-lg backdrop-hue-rotate-30 absolute"
+            ? "md:h-auto backdrop-blur-lg backdrop-hue-rotate-30 md:absolute"
             : "md:h-44"
         } rounded-md  border z-50 md:hover:scale-150 duration-300 text-info`}
       >
@@ -30,16 +30,16 @@ const Card = ({ file }) => {
             {hover ? (
               <h3
                 className={`font-semibold ${
-                  hover ? "text-xs leading-3" : "text-sm"
-                } leading-5`}
+                  hover ? "text-sm md:text-xs leading-3" : "text-sm"
+                } leading-3 md:leading-5 `}
               >
                 {file.title}
               </h3>
             ) : (
               <h3
                 className={`font-semibold ${
-                  hover ? "text-xs leading-3" : "text-sm"
-                } leading-4 md:leading-5`}
+                  hover ? "text-sm md:text-xs leading-3" : "text-sm"
+                } leading-3 md:leading-5`}
               >
                 {file.title.split(" ").length > 7
                   ? file.title.split(" ").slice(0, 8).join(" ")
@@ -50,12 +50,12 @@ const Card = ({ file }) => {
           {hover && (
             <>
               {/* Artist */}
-              <div className="flex gap-2 text-xs">
+              <div className="gap-2 text-xs hidden md:flex">
                 <p>Artist:</p>
                 <p>{file.artist}</p>
               </div>
               {/* Category */}
-              <div className="flex gap-2 text-xs">
+              <div className="gap-2 text-xs hidden md:flex">
                 <p>Category:</p>
                 {file?.categories.map((category, i) => (
                   <Link key={i} className="text-blue-500" href={"#"}>
@@ -64,22 +64,22 @@ const Card = ({ file }) => {
                 ))}
               </div>
               {/* File size */}
-              <div className="flex gap-2 text-xs">
+              <div className="gap-2 text-xs hidden md:flex">
                 <p>File size:</p>
                 <p>{file.fileSize}</p>
               </div>
               {/* Total Download */}
-              <div className="flex gap-2 text-xs">
+              <div className="gap-2 text-xs hidden md:flex">
                 <p>Downloaded:</p>
                 <p>{file.totalDownload}</p>
               </div>
               {/* Date */}
-              <div className="flex gap-2 text-xs">
+              <div className="gap-2 text-xs hidden md:flex">
                 <p>Date:</p>
                 <p>{file.date} </p>
               </div>
               {/* URL */}
-              <div className="flex gap-2 justify-center">
+              <div className="hidden md:flex gap-2 justify-center">
                 <a
                   className="btn btn-xs btn-rounded rounded-full bg-blue-100 border border-blue-300 text-blue-600 hover:bg-blue-200 hover:text-blue-600"
                   href={file.downloadUrl}
