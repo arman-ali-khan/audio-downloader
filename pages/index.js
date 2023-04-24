@@ -16,13 +16,13 @@ export default function Home() {
         <Hero />
       </div>
       <div className='w-full md:flex gap-2'>
-        <div className='md:w-3/12 border'>
+        <div className='md:w-3/12'>
           <Popular />
         </div>
         <div className='md:w-6/12'>
         <Recent />
         </div>
-        <div className='md:w-3/12 border'>
+        <div className='md:w-3/12'>
           <Categories />
         </div>
       </div>

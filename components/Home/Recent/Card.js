@@ -29,7 +29,7 @@ const Card = ({ file }) => {
           <Link className="text-blue-500" href={`/file/${file.id}`}>
             {hover ? (
               <h3
-                className={`font-semibold ${
+                className={`font-semibold my-1 ${
                   hover ? "text-sm md:text-xs leading-3" : "text-sm"
                 } leading-3 md:leading-3 `}
               >
@@ -37,7 +37,7 @@ const Card = ({ file }) => {
               </h3>
             ) : (
               <h3
-                className={`font-semibold ${
+                className={`font-semibold my-1 ${
                   hover ? "text-sm md:text-xs leading-3" : "text-sm"
                 } leading-3 md:leading-5`}
               >
