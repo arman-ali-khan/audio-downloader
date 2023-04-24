@@ -14,7 +14,7 @@ const Card = ({ file }) => {
           hover
             ? "md:h-auto backdrop-blur-lg backdrop-hue-rotate-30 absolute"
             : "md:h-44"
-        } rounded-md  border z-50 hover:scale-150 duration-300 text-info`}
+        } rounded-md  border z-50 md:hover:scale-150 duration-300 text-info`}
       >
         <div>
           <img
