@@ -12,7 +12,7 @@ const Recent = () => {
   const [count, setCount] = useState(0);
   // pagination
   const [page, setPage] = useState(0);
-  const [size, setSize] = useState(3);
+  const [size, setSize] = useState(6);
   // page count
   const pages = Math.ceil(count / size);
 
@@ -33,7 +33,7 @@ const Recent = () => {
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-2">
         {loading
-          ? [...Array(6).keys()].map((number) => (
+          ? [...Array(size).keys()].map((number) => (
             // Loading...
               <div key={number} className="w-full h-44 rounded-md border animate-pulse bg-gray-200 relative">
                 <div className="h-16 rounded-md bg-gray-300 absolute bottom-0 w-full"></div>
@@ -47,11 +47,13 @@ const Recent = () => {
         <div className="btn-group">
           {[...Array(pages).keys()].map((number) => (
             <button
+              disabled={page === number}
               key={number}
               onClick={() => setPage(number)}
+              onClickCapture={()=>setLoading(true)}
               className={`btn ${
                 page === number ? "btn-primary" : "btn-ghost"
-              } border shadow-lg`}
+              } border shadow-lg disabled:bg-primary disabled:text-white`}
             >
               {number + 1}
             </button>

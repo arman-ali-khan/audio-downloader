@@ -4,7 +4,7 @@ import React from "react";
 const Card = ({popular}) => {
   return (
       <div className="w-full rounded-md hover:bg-base-200 border">
-        <Link className="flex w-full" href={"#"}>
+        <Link className="flex w-full" href={`/file/${popular.id}`}>
           <div className="w-20 h-12">
             <img
               className="rounded-md h-12 w-20 object-cover"

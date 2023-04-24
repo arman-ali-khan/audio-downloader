@@ -26,12 +26,12 @@ const Card = ({ file }) => {
           />
         </div>
         <div className="px-1">
-          <Link className="text-blue-500" href={`/file/${file._id}`}>
+          <Link className="text-blue-500" href={`/file/${file.id}`}>
             {hover ? (
               <h3
                 className={`font-semibold ${
                   hover ? "text-sm md:text-xs leading-3" : "text-sm"
-                } leading-3 md:leading-5 `}
+                } leading-3 md:leading-3 `}
               >
                 {file.title}
               </h3>
