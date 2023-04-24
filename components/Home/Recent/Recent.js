@@ -5,13 +5,13 @@ import Tags from "./Tags";
 
 const Recent = () => {
   const [loading, setLoading] = useState(true);
-  const [tag, setTag] = useState("");
+  const [tag, setTag] = useState('funny');
   //   Loaded files
   const [files, setFiles] = useState([]);
     const [count,setCount] = useState(0)
     // pagination
     const [page,setPage] = useState(0)
-    const [size,setSize] = useState(12)
+    const [size,setSize] = useState(3)
     // page count
     const pages = Math.ceil(count / size)
 

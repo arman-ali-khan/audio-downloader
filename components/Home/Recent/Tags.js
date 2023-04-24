@@ -5,7 +5,7 @@ const Tags = ({tag,setTag}) => {
         <div>
              <div className="flex gap-1 flex-wrap my-2">
         <button
-          onClick={() => setTag(" ")}
+          onClick={() => setTag("funny")}
           className={`btn btn-xs rounded-full ${tag === "" ? "" : "btn-outline"}`}
         >
           All
