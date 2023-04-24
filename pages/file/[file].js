@@ -5,7 +5,7 @@ import React from 'react';
 
 const file = ({data:file}) => {
     return (
-        <Main title={'File'}>
+        <Main title={file.title} description={`Download ${file.title}`} thumb={file.thumb} >
             <div className='md:flex w-full gap-2'>
                 <div className='md:w-3/12 hidden md:block'>
                     <Popular />
