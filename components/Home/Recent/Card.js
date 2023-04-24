@@ -7,7 +7,7 @@ const Card = ({file}) => {
 
   return (
       <div className="relative">
-        <div onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)} className={`w-full ${hover? "md:h-64 backdrop-blur-lg backdrop-hue-rotate-30 absolute" : "md:h-44"} rounded-md  border z-50 hover:scale-150 duration-300 text-info`}>
+        <div onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)} className={`w-full ${hover? "md:h-auto backdrop-blur-lg backdrop-hue-rotate-30 absolute" : "md:h-44"} rounded-md  border z-50 hover:scale-150 duration-300 text-info`}>
        
           <div>
             <img
