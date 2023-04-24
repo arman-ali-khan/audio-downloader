@@ -81,7 +81,7 @@ export async function getServerSideProps(context) {
     const { file } = context.query;
     console.log(file)
     // Fetch data for the given id
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE}/api/file/${file}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_PRO}/api/file/${file}`);
     const data = await res.json();
   
     return {
