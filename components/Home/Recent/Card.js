@@ -23,7 +23,7 @@ const Card = ({file}) => {
             {file.title}
            </h3>
            :
-           <h3 className={`font-semibold ${hover ? 'text-xs leading-3':'text-sm'} leading-5`}>
+           <h3 className={`font-semibold ${hover ? 'text-xs leading-3':'text-sm'} leading-4 md:leading-5`}>
            {file.title.split(' ').length > 7 ? file.title.split(' ').slice(0,8).join(' '): file.title}
           </h3>
            }

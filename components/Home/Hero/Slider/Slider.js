@@ -46,9 +46,9 @@ export default function Slider() {
           <div style={{backgroundImage:`url(${file.thumb})`}} className={`w-full h-full bg-cover bg-center  flex justify-center items-center`}>
           <div className="absolute h-full w-full backdrop-blur-sm backdrop-brightness-90 backdrop-hue-rotate-30 backdrop-contrast-75 flex flex-col px-4 justify-center items-center py-2 rounded-md">
               <div>
-              <h2 className="md:text-3xl text-center text-info font-bold">Pashaner Khudha Part 1 | Gajendra Kumar Mitra | Mirchi Bangla</h2>
+              <h2 className="md:text-3xl text-center text-info font-bold">{file.title}</h2>
               <div className="flex justify-center my-3">
-              <Link className="btn btn-xs md:btn-md md:w-44 btn-primary" href={'#'}>Download</Link>
+              <Link className="btn btn-xs md:btn-md md:w-44 btn-primary" href={`/file/${file._id}`}>Download</Link>
               </div>
               </div>
           </div>
