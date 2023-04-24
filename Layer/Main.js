@@ -10,7 +10,7 @@ const Main = ({ children, title, description, thumb }) => {
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} key="desc" />
-        <meta property="og:title" content="Social Title for Cool Page" />
+        <meta property="og:title" content={title} />
         <meta
           property="og:description"
           content={description}
