@@ -18,7 +18,7 @@ const category = ({data:category,category:title}) => {
     const categoryTitle = title.split('-').join(' ').toUpperCase()
   console.log(categoryTitle)
     return (
-        <Main title={`All files archived ${title}`}>
+        <Main title={`All files archived ${categoryTitle}`}>
             <div className='w-full md:flex gap-2'>
         <div className='md:w-3/12'>
           <Popular />
@@ -66,7 +66,7 @@ const category = ({data:category,category:title}) => {
             </div>
             :
             <div className='md:w-6/12'>
-                <p>No Data</p>
+                <p className='flex justify-center'>No data in {categoryTitle}</p>
             </div>
        }
         <div className='md:w-3/12'>
