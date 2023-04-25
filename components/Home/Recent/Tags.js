@@ -8,7 +8,9 @@ const Tags = ({tag,setTag}) => {
         
         
       </div>
+      <div className='my-3'>
       <TagSlider tag={tag} setTag={setTag} />
+      </div>
         </div>
     );
 };

@@ -43,3 +43,8 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+
+.swiper-slide{
+  margin-right: 0!important;
+}
