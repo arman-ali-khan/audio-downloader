@@ -83,7 +83,7 @@ export async function getServerSideProps(context) {
     const { category } = context.query;
     console.log(category)
     // Fetch data for the given id
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_DEV}/api/category/${category}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_PRO}/api/category/${category}`);
     const data = await res.json();
   
     return {
