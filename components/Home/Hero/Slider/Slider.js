@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 import "./styles.module.css";
 
 // import required modules
-import { Navigation, Pagination } from "swiper";
+import { Navigation, Pagination, Autoplay } from "swiper";
 import Link from "next/link";
 import axios from "axios";
 
@@ -31,7 +31,11 @@ export default function Slider() {
       <Swiper
         navigation={true}
         pagination={true}
-        modules={[Navigation, Pagination]}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        modules={[Navigation, Pagination, Autoplay]}
         className="mySwiper"
       >
         {

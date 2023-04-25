@@ -8,7 +8,7 @@ const Recent = () => {
   const [tag, setTag] = useState("funny");
   //   Loaded files
   const [files, setFiles] = useState([]);
-  // Products count 
+  // Products count
   const [count, setCount] = useState(0);
   // pagination
   const [page, setPage] = useState(0);
@@ -34,15 +34,18 @@ const Recent = () => {
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-2">
         {loading
           ? [...Array(size).keys()].map((number) => (
-            // Loading...
-              <div key={number} className="w-full h-44 rounded-md border animate-pulse bg-gray-200 relative">
+              // Loading...
+              <div
+                key={number}
+                className="w-full h-44 rounded-md border animate-pulse bg-gray-200 relative"
+              >
                 <div className="h-16 rounded-md bg-gray-300 absolute bottom-0 w-full"></div>
               </div>
             ))
-            // File card
-          : files.map((file, i) => <Card file={file} key={i} />)}
+          : // File card
+            files.map((file, i) => <Card file={file} key={i} />)}
       </div>
-            {/* pagination */}
+      {/* pagination */}
       <div className="flex justify-center w-full my-3">
         <div className="btn-group">
           {[...Array(pages).keys()].map((number) => (
@@ -50,8 +53,8 @@ const Recent = () => {
               disabled={page === number}
               key={number}
               onClick={() => setPage(number)}
-              onClickCapture={()=>setLoading(true)}
-              className={`btn ${
+              onClickCapture={() => setLoading(true)}
+              className={`btn btn-xs md:btn-sm ${
                 page === number ? "btn-primary" : "btn-ghost"
               } border shadow-lg disabled:bg-primary disabled:text-white`}
             >
