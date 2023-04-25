@@ -12,7 +12,6 @@ const Popular = () => {
       setLoading(false);
     });
   }, []);
-  console.log(populars);
   return (
     <div>
       <div className="px-4 py-1 bg-base-200 rounded-t-md">

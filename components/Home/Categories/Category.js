@@ -2,7 +2,6 @@ import Link from 'next/link';
 import React from 'react';
 
 const Category = ({category}) => {
-  console.log(category)
     return (
         <Link href={`/category/${category.label}`} className="flex gap-2 my-1 hover:bg-base-200 px-2 py-1">
         <div>
