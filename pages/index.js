@@ -1,10 +1,9 @@
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import Main from '../Layer/Main'
-import Hero from '../components/Home/Hero/Hero'
-import Recent from '../components/Home/Recent/Recent'
-import Popular from '../components/Home/Popular/Popular'
+import Main from '../Layout/Main'
 import Categories from '../components/Home/Categories/Categories'
+import Hero from '../components/Home/Hero/Hero'
+import Popular from '../components/Home/Popular/Popular'
+import Recent from '../components/Home/Recent/Recent'
 
 const inter = Inter({ subsets: ['latin'] })
 

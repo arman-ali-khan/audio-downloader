@@ -4,6 +4,7 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './Layout/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
@@ -16,3 +17,8 @@ module.exports = {
   },
   plugins: [require("daisyui")],
 }
+import keepPreset from "keep-react/src/keep-preset.js";
+export default {
+  content: ["node_modules/keep-react/**/*.{js,jsx,ts,tsx}"],
+  presets: [keepPreset],
+};

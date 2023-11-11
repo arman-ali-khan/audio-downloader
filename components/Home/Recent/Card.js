@@ -1,12 +1,16 @@
+import parse from 'html-react-parser';
 import Link from "next/link";
 import React, { useState } from "react";
-import Categories from "../Categories/Categories";
+
 
 const Card = ({ file }) => {
   const [hover, setHover] = useState(false);
+console.log(file)
+  const categories = JSON.parse(file?.categories)
+  const artist = JSON.parse(file?.artist)
 
   return (
-    <div className="relative">
+    <div className="relative ">
       <div
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
@@ -21,19 +25,19 @@ const Card = ({ file }) => {
             className={`rounded-t-md ${
               hover ? "md:h-24" : "md:h-24"
             } w-full object-cover`}
-            src={file.thumb}
+            src={file?.thumbnail}
             alt=""
           />
         </div>
         <div className="px-1">
-          <Link className="text-blue-500" href={`/file/${file.id}`}>
+          <Link className="text-blue-500" href={`/file/${file?.id}`}>
             {hover ? (
               <h3
                 className={`font-semibold my-1 ${
                   hover ? "text-sm md:text-xs leading-3" : "text-sm"
                 } leading-3 md:leading-3 `}
               >
-                {file.title}
+                {file?.title}
               </h3>
             ) : (
               <h3
@@ -41,51 +45,58 @@ const Card = ({ file }) => {
                   hover ? "text-sm md:text-xs leading-3" : "text-sm"
                 } leading-3 md:leading-5`}
               >
-                {file.title.split(" ").length > 7
-                  ? file.title.split(" ").slice(0, 8).join(" ")
-                  : file.title}
+                {file?.title?.split(" ").length > 7
+                  ? file?.title.split(" ").slice(0, 8).join(" ")
+                  : file?.title}
               </h3>
             )}
           </Link>
           {hover && (
             <>
               {/* Artist */}
-              <div className="gap-2 text-xs hidden md:flex">
+              <div className="gap-2 text-xs truncate hidden md:flex">
                 <p>Artist:</p>
-                <p>{file.artist}</p>
+                {artist?.length && artist?.map((category, i) => (
+                  <Link key={i} className="text-blue-500" href={`/artist/${category?.value}`}>
+                    {category?.label},
+                  </Link>
+                ))}
               </div>
               {/* Category */}
               <div className="gap-2 text-xs hidden md:flex">
                 <p>Category:</p>
-                {file?.categories.map((category, i) => (
-                  <Link key={i} className="text-blue-500" href={"#"}>
-                    {category.value}
+                {categories?.length && categories?.map((category, i) => (
+                  <Link key={i} className="text-blue-500" href={`/category/${category?.value}`}>
+                    {category?.label}
                   </Link>
                 ))}
               </div>
               {/* File size */}
               <div className="gap-2 text-xs hidden md:flex">
                 <p>File size:</p>
-                <p>{file.fileSize}</p>
+                <p>{file?.fileSize}</p>
               </div>
               {/* Total Download */}
               <div className="gap-2 text-xs hidden md:flex">
                 <p>Downloaded:</p>
-                <p>{file.totalDownload}</p>
+                <p>{file?.totalDownload||0}</p>
               </div>
               {/* Date */}
               <div className="gap-2 text-xs hidden md:flex">
                 <p>Date:</p>
-                <p>{file.date} </p>
+                <p>{file?.createdAt} </p>
               </div>
               {/* URL */}
               <div className="hidden md:flex gap-2 justify-center">
-                <a
+                {
+                  parse(file?.embedCode)
+                }
+                {/* <a target="_blank"
                   className="btn btn-xs btn-rounded rounded-full bg-blue-100 border border-blue-300 text-blue-600 hover:bg-blue-200 hover:text-blue-600"
-                  href={file.downloadUrl}
+                  href={file?.downloadUrl}
                 >
                   Download
-                </a>
+                </a> */}
               </div>
             </>
           )}

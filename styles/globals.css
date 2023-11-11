@@ -1,23 +1,21 @@
+@import "keep-react/src/main.min.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-
-
-.swiper-pagination-bullet{
-  background-color: aliceblue!important;
+.swiper-pagination-bullet {
+  background-color: aliceblue !important;
 }
-.swiper-pagination-bullet-active{
-  width: 40px!important;
-  border-radius: 30px!important;
-  background-color: rgb(80, 236, 176)!important;
+.swiper-pagination-bullet-active {
+  width: 40px !important;
+  border-radius: 30px !important;
+  background-color: rgb(80, 236, 176) !important;
 }
 
-.swiper-button-prev.swiper-button-disabled{
+.swiper-button-prev.swiper-button-disabled {
   display: none;
 }
-.swiper-button-next.swiper-button-disabled{
+.swiper-button-next.swiper-button-disabled {
   display: none;
 }
 
@@ -44,7 +42,6 @@
   background: #555;
 }
 
-
-.swiper-slide{
-  margin-right: 0!important;
+.swiper-slide {
+  margin-right: 0 !important;
 }

@@ -1,7 +1,6 @@
-import Link from "next/link";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Category from "./Category";
-import axios from "axios";
 
 const Categories = () => {
   // Loading...
@@ -11,7 +10,7 @@ const Categories = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    axios.get(`/api/categories`).then((res) => {
+    axios.get(`http://localhost:4000/0.1/api/categories?limit=10&page=1`).then((res) => {
       setCategories(res.data);
       setLoading(false);
     });
