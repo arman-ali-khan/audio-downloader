@@ -1,9 +1,10 @@
 
-import Main from '../../Layer/Main';
-import Popular from '../../components/Home/Popular/Popular';
-import Categories from '../../components/Home/Categories/Categories';
- import React, { useState } from "react";
+// import Main from '../../Layer/Main';
+import React, { useState } from "react";
+import Main from '../../Layout/Main';
 import Card from "../../components/Categories/Card";
+import Categories from '../../components/Home/Categories/Categories';
+import Popular from '../../components/Home/Popular/Popular';
 
 const category = ({data:category,category:title}) => {
     const [loading, setLoading] = useState(false);
