@@ -6,6 +6,7 @@ export default function Document() {
      
       <Head >
       <link rel="icon" href="/fav.ico" sizes="any" /> 
+      <meta name="google-site-verification" content="ZiyBEiGqRODvrZAxabxhF6org3HqInfnHcOgi3KK4iQ" />
       </Head>
       <body className='md:container mx-auto md:px-4 px-1'>
         <Main />
