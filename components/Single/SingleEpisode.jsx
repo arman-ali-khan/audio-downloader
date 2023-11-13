@@ -81,9 +81,9 @@ function SingleEpisode({file}) {
             {/* Tags */}
             <div className='flex gap-2'>
             <p className='font-bold'>Tags:</p>
-            <p>
+            <p className="flex items-center gap-1">
                 {tags?.length ?
-                    tags?.map((tag,i)=><Link key={i} className='text-blue-500' href={`/tag/${tag?.value}`}>{tag?.value}<span className='text-black'>,</span></Link>):''
+                    tags?.map((tag,i)=><p key={i} className='text-blue-500' href={`/tag/${tag?.value}`}>{tag?.value}<span className='text-black'>,</span></p>):''
                 }
             </p>
            </div>

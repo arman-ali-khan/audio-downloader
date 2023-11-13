@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Select from "react-select";
+import CreatableSelect from 'react-select/creatable';
 
 function Create() {
 
@@ -54,7 +55,7 @@ useEffect(()=>{
   })
 },[])
   return (
-    <div className="w-full">
+    <div className="w-full sm:w-96 mx-auto">
       <form onSubmit={handleSubmit(handleCreateEpisode)} className="w-full capitalize">
         <div className="flex mx-auto flex-col w-full sm:w-96">
           <label htmlFor="title">Title</label>
@@ -113,14 +114,15 @@ useEffect(()=>{
         {/* artist */}
         <div className="flex flex-col">
           <label htmlFor="artist">artist</label>
-          <Select
+          <CreatableSelect onChange={(e)=>setArtist(e)} className="basic-multi-select" isMulti isClearable options={categoriesData} />
+          {/* <Select
             onChange={(e)=>setArtist(e)}
             isMulti
             name="colors"
             options={categoriesData}
             className="basic-multi-select"
             classNamePrefix="select"
-          />
+          /> */}
           {/* <input
             {...register("artist", { required: true })}
             className="input w-full input-bordered"
@@ -152,14 +154,7 @@ useEffect(()=>{
         {/* Tags */}
         <div className="flex flex-col">
           <label htmlFor="tags">tags</label>
-          <Select
-            onChange={(e)=>setTags(e)}
-            isMulti
-            name="colors"
-            options={categoriesData}
-            className="basic-multi-select"
-            classNamePrefix="select"
-          />
+          <CreatableSelect onChange={(e)=>setTags(e)} className="basic-multi-select" isMulti isClearable options={categoriesData} />
           {/* <input
             {...register("tags", { required: true })}
             className="input w-full input-bordered"
