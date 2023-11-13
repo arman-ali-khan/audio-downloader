@@ -56,11 +56,11 @@ const Card = ({ file }) => {
               {/* Category */}
               <div className="gap-2 text-xs hidden md:flex">
                 <p>Category:</p>
-                {file?.categories.map((category, i) => (
+                {/* {file?.categories?.length && file?.categories?.map((category, i) => (
                   <Link key={i} className="text-blue-500" href={"#"}>
                     {category.value}
                   </Link>
-                ))}
+                ))} */}
               </div>
               {/* File size */}
               <div className="gap-2 text-xs hidden md:flex">
@@ -75,7 +75,7 @@ const Card = ({ file }) => {
               {/* Date */}
               <div className="gap-2 text-xs hidden md:flex">
                 <p>Date:</p>
-                <p>{file.date} </p>
+                <p>{moment(popular?.createdAt).fromNow()} </p>
               </div>
               {/* URL */}
               <div className="hidden md:flex gap-2 justify-center">

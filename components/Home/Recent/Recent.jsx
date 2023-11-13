@@ -1,11 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
-import Tags from "./Tags";
 
 const Recent = () => {
   const [loading, setLoading] = useState(true);
-  const [tag, setTag] = useState("funny");
+  const [tag, setTag] = useState("");
   //   Loaded files
   const [files, setFiles] = useState([]);
   // Products count
@@ -18,20 +17,23 @@ const Recent = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/0.1/api/posts?limit=${size}&page=${page}`)
+      .get(`https://apiradio.arman.top/0.1/api/posts?limit=${size}&page=${page}&value=${tag}`)
       .then(function (response) {
-        setFiles(response.data);
-        setCount(response.data);
+        setFiles(response.data?.episodes);
+        setCount(response.data?.count);
         setLoading(false);
       });
   }, [tag, page]);
-console.log(files)
+// console.log(files)
   return (
     <div>
       {/* Home tags */}
-      <Tags tag={tag} setTag={setTag} />
-
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      {/* <Tags tag={tag} setTag={setTag} /> */}
+    <div className="bg-base-200 px-2 py-2 rounded-sm mb-2">
+      <h2>Recent Episodes</h2>
+    </div>
+     <div className="md:h-44">
+     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-2">
         {loading
           ? [...Array(size).keys()].map((number) => (
               // Loading...
@@ -45,10 +47,11 @@ console.log(files)
           : // File card
             files?.map((file, i) => <Card file={file} key={i} />)}
       </div>
+     </div>
       {/* pagination */}
-      <div className="flex justify-center w-full my-3">
+      <div className="flex justify-center mt-44 w-full my-3">
         <div className="btn-group">
-          {[...Array(5).keys()].map((number) => (
+          {[...Array(pages).keys()].map((number) => (
             <button
               disabled={page === number}
               key={number}

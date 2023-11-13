@@ -1,16 +1,26 @@
-import parse from 'html-react-parser';
+import moment from "moment";
 import Link from "next/link";
 import React, { useState } from "react";
 
 
 const Card = ({ file }) => {
   const [hover, setHover] = useState(false);
-console.log(file)
+// console.log(file)
   const categories = JSON.parse(file?.categories)
   const artist = JSON.parse(file?.artist)
 
+  // handle download 
+  const handleDownload = (url) =>{
+    axios.get(`https://apiradio.arman.top/0.1/api/download/${file?.id}`)
+    .then(res=>{
+        // console.log(res.data)
+        toast.success('Downloading...')
+        window.open(url, '_blank');
+    })
+}
+
   return (
-    <div className="relative ">
+    <div className="relative">
       <div
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
@@ -55,54 +65,49 @@ console.log(file)
             <>
               {/* Artist */}
               <div className="gap-2 text-xs truncate hidden md:flex">
-                <p>Artist:</p>
+                <p className=" text-gray-600">Artist:</p>
                 {artist?.length && artist?.map((category, i) => (
-                  <Link key={i} className="text-blue-500" href={`/artist/${category?.value}`}>
-                    {category?.label},
-                  </Link>
+                  <p key={i} className="text-blue-500" href={`/artist/${category?.value}`}>
+                    {category?.value},
+                  </p>
                 ))}
               </div>
               {/* Category */}
-              <div className="gap-2 text-xs hidden md:flex">
-                <p>Category:</p>
+              <div className="gap-2 text-xs hidden md:flex truncate">
+                <p className=" text-gray-600">Category:</p>
                 {categories?.length && categories?.map((category, i) => (
-                  <Link key={i} className="text-blue-500" href={`/category/${category?.value}`}>
-                    {category?.label}
+                  <Link key={i} className="text-blue-500" href={`/category/${category?.label}`}>
+                    {category?.value} |
                   </Link>
                 ))}
               </div>
               {/* File size */}
               <div className="gap-2 text-xs hidden md:flex">
-                <p>File size:</p>
+                <p className=" text-gray-600">File size:</p>
                 <p>{file?.fileSize}</p>
               </div>
               {/* Total Download */}
               <div className="gap-2 text-xs hidden md:flex">
-                <p>Downloaded:</p>
+                <p className=" text-gray-600">Downloaded:</p>
                 <p>{file?.totalDownload||0}</p>
               </div>
               {/* Date */}
               <div className="gap-2 text-xs hidden md:flex">
-                <p>Date:</p>
-                <p>{file?.createdAt} </p>
+                <p className=" text-gray-600">Date:</p>
+                <p>{moment(file?.createdAt).fromNow()} </p>
               </div>
               {/* URL */}
-              <div className="hidden md:flex gap-2 justify-center">
-                {
+              <div className="hidden md:flex gap-2 justify-center pb-3">
+                {/* {
                   parse(file?.embedCode)
-                }
-                {/* <a target="_blank"
-                  className="btn btn-xs btn-rounded rounded-full bg-blue-100 border border-blue-300 text-blue-600 hover:bg-blue-200 hover:text-blue-600"
-                  href={file?.downloadUrl}
-                >
-                  Download
-                </a> */}
+                } */}
+                <button className='btn btn-xs btn-rounded rounded-full mt-4 text-white border border-blue-300  hover:bg-blue-200 hover:text-blue-600' onClick={()=>handleDownload(file?.downloadUrl)}>Download</button>
               </div>
             </>
           )}
-          <span className={`text-xs ${hover && "hidden"}`}>12MB</span>{" "}
+          <span className={`text-xs ${hover && "hidden"}`}>{file?.fileSize}</span>{" "}
           <span className={`${hover && "hidden"}`}>|</span>{" "}
-          <span className={`text-xs ${hover && "hidden"}`}>2 day ago</span>
+          <span className={`text-xs ${hover && "hidden"}`}>{moment(file?.createdAt).fromNow()}</span>
         </div>
       </div>
     </div>

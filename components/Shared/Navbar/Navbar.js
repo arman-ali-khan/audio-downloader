@@ -16,7 +16,7 @@ const Navbar = () => {
             <li><Link href={'#'}>Item 3</Link></li>
             </ul>
           </div> */}
-          <Link href={'/'} className="btn btn-ghost btn-sm normal-case text-xl">Logo</Link>
+          <Link href={'/'} className=" normal-case text-xl"><img width={120} src='/logo.png' /></Link>
         </div>
         {/* <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
@@ -24,9 +24,6 @@ const Navbar = () => {
             <li><Link className='border-b py-1 !rounded mx-1' href={'#'}>Item 3</Link></li>
           </ul>
         </div> */}
-        <div className="navbar-end">
-          <button onClick={()=>setModal(true)}  className="btn btn-sm btn-secondary rounded">Login</button>
-        </div>
         <Login modal={modal} setModal={setModal} />
       </div>
     );

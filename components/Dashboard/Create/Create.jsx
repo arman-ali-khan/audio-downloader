@@ -1,10 +1,14 @@
 import axios from "axios";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Select from "react-select";
 
 function Create() {
+
+  // router
+  const router = useRouter()
 
     const { register, handleSubmit } = useForm();
     // categories
@@ -22,31 +26,37 @@ function Create() {
       author: "",
       updatedAt: new Date(),
       downloadUrl: e.downloadUrl,
+      fileSize: e.fileSize,
       embedCode: JSON.stringify(e.embedCode),
       artist: JSON.stringify(artist),
       categories: JSON.stringify(categories),
       tags: JSON.stringify(tags),
     };
-    console.log(e);
+    // console.log(e);
     axios
-      .post("http://localhost:4000/0.1/api/posts", episodeData)
+      .post("https://apiradio.arman.top/0.1/api/posts", episodeData)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         toast.success("Episode created");
+        router.push('/')
       })
       .catch(function (error) {
         console.log(error);
       });
   };
-  const options = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-  ];
+// get all categories 
+const [categoriesData,setCategoriesData] = useState([])
+useEffect(()=>{
+  axios.get(`https://apiradio.arman.top/0.1/api/categories?limit=10&page=0`)
+  .then(res=>{
+    // console.log(res.data)
+    setCategoriesData(res.data)
+  })
+},[])
   return (
-    <div>
-      <form onSubmit={handleSubmit(handleCreateEpisode)} className="w-full">
-        <div className="flex mx-auto flex-col w-96">
+    <div className="w-full">
+      <form onSubmit={handleSubmit(handleCreateEpisode)} className="w-full capitalize">
+        <div className="flex mx-auto flex-col w-full sm:w-96">
           <label htmlFor="title">Title</label>
           <input
             {...register("title", { required: true })}
@@ -89,13 +99,13 @@ function Create() {
             id="download"
           />
         </div>
-        {/* embed code */}
+        {/* file size */}
         <div className="flex flex-col">
-          <label htmlFor="embed">embed code</label>
+          <label htmlFor="embed">File size</label>
           <input
-            {...register("embedCode", { required: true })}
+            {...register("fileSize", { required: true })}
             className="input w-full input-bordered"
-            placeholder="embed"
+            placeholder="File Size"
             type="text"
             id="embed"
           />
@@ -107,7 +117,7 @@ function Create() {
             onChange={(e)=>setArtist(e)}
             isMulti
             name="colors"
-            options={options}
+            options={categoriesData}
             className="basic-multi-select"
             classNamePrefix="select"
           />
@@ -133,7 +143,7 @@ function Create() {
             onChange={(e)=>setCategories(e)}
             isMulti
             name="colors"
-            options={options}
+            options={categoriesData}
             className="basic-multi-select"
             classNamePrefix="select"
           />
@@ -146,7 +156,7 @@ function Create() {
             onChange={(e)=>setTags(e)}
             isMulti
             name="colors"
-            options={options}
+            options={categoriesData}
             className="basic-multi-select"
             classNamePrefix="select"
           />

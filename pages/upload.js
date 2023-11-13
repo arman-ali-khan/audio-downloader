@@ -8,7 +8,7 @@ export default function Home() {
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
-  console.log(file)
+  // console.log(file)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,7 +23,7 @@ export default function Home() {
 
     // Handle the response as needed
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     setFileName(data);
   };
 

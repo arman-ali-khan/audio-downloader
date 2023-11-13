@@ -1,13 +1,12 @@
-import Link from "next/link";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Card from "../Popular/Card";
-import axios from "axios";
 
 const Popular = () => {
   const [loading, setLoading] = useState(true);
   const [populars, setPopulars] = useState([]);
   useEffect(() => {
-    axios.get("/api/popular").then((res) => {
+    axios.get("https://apiradio.arman.top/0.1/api/popular-posts").then((res) => {
       setPopulars(res.data);
       setLoading(false);
     });

@@ -25,6 +25,19 @@ const CategoryController = {
       res.json(user[0]);
     });
   },
+  getCategoryPosts: (req, res) => {
+    const value = req.query.value;
+    const limit = req.query.limit;
+    const offset = req.query.page;
+    const sort = req.query.sort;
+    CategoryModel.getCategoryPosts(value,limit,offset,sort, ({err, episodes,count}) => {
+      if (err) {
+        res.status(500).json({ error: err.message });
+        return;
+      }
+      res.json({episodes,count});
+    });
+  },
 
   createCategory: (req, res) => {
     const data = {

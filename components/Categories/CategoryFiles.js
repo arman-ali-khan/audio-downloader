@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import Card from "./Card";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import Card from "../Home/Recent/Card";
 
 const CategoryFiles = ({label}) => {
   const [loading, setLoading] = useState(true);
@@ -17,13 +17,14 @@ const CategoryFiles = ({label}) => {
 
   useEffect(() => {
     axios
-      .get(`/api/category/${label}?page=${page}&&size=${size}`)
+      .get(`https://apiradio.arman.top/0.1/api/categoryPosts?value=${label}&limit=10&page=${page}&sort=desc`)
       .then(function (response) {
-        setFiles(response.data);
+        setFiles(response.data?.episodes);
+        setCount(res.data?.count)
         setLoading(false);
       });
   }, [tag, page]);
-console.log(files,label)
+// console.log(files)
   return (
     <div>
       {/* Home tags */}
@@ -40,12 +41,12 @@ console.log(files,label)
               </div>
             ))
           : // File card
-            files.map((file, i) => <Card file={file} key={i} />)}
+            files?.map((file, i) => <Card file={file} key={i} />)}
       </div>
       {/* pagination */}
       <div className="flex justify-center w-full my-3">
         <div className="btn-group">
-          {[...Array(pages).keys()].map((number) => (
+          {[...Array(pages).keys()].map((item,number) => (
             <button
               disabled={page === number}
               key={number}
