@@ -27,7 +27,7 @@ const Card = ({ file }) => {
         className={`w-full ${
           hover
             ? "md:h-auto backdrop-blur-lg backdrop-hue-rotate-30 md:absolute"
-            : "md:h-44"
+            : "md:h-full"
         } rounded-md  border z-50 md:hover:scale-150 duration-300 text-info`}
       >
         <div>

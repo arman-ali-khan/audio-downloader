@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 function EditModal({editId,setEditId}) {
     const {handleSubmit,register} = useForm()
@@ -13,10 +14,21 @@ function EditModal({editId,setEditId}) {
             setEditData(res.data)
         })
     },[editId])
-console.log(editData)
     // handle update
     const handleUpdateCategory = (data) =>{
-    console.log(data)
+        const dataEdit = {
+            value:data?.value,
+            label:data?.label,
+            count:data?.count,
+            updatedAt:Date()
+        }
+    axios.put(`${process.env.NEXT_PUBLIC_API_PRO}/category/${editId}`,dataEdit)
+    .then(res=>{
+        toast.success('Updated')
+    })
+    .catch(err=>{
+        console.error(err);
+    })
     }
     return (
         <div>

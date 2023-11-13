@@ -44,6 +44,7 @@ const CategoryController = {
       value: req.body.value,
       label: req.body.label,
       count: req.body.count,
+      createdAt:req.body.createdAt
     };
 
     CategoryModel.createCategory(data, (err, result) => {
@@ -56,13 +57,15 @@ const CategoryController = {
   },
 
   updateCategory: (req, res) => {
-    const userId = req.params.id;
-    const user = {
-      name: req.body.name,
-      email: req.body.email,
+    const categoryId = req.params.id;
+    const data = {
+      value: req.body.value,
+      label: req.body.label,
+      count:req.body.count,
+      updatedAt:req.body.updatedAt
     };
 
-    CategoryModel.updateCategory(userId, user, (err, result) => {
+    CategoryModel.updateCategory(categoryId, data, (err, result) => {
       if (err) {
         res.status(500).json({ error: err.message });
         return;

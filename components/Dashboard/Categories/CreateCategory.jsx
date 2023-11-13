@@ -9,7 +9,8 @@ function CreateCategory() {
         const categoryData = {
             "value":data?.value,
             "label":data?.label.split(' ').join('-').toLowerCase(),
-            "count":0
+            "count":0,
+            createdAt:new Date().toISOString()
         }
 
         axios.post(`https://apiradio.arman.top/0.1/api/category`,categoryData)

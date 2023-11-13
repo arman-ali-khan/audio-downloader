@@ -41,11 +41,11 @@ const CategoryModel = {
   },
 
   createCategory: (data, callback) => {
-    db.query('INSERT INTO categories (value,label,count) VALUES (?,?,?)', [data?.value,data?.label,data?.count], callback);
+    db.query('INSERT INTO categories (value,label,count) VALUES (?,?,?,?)', [data?.value,data?.label,data?.count,data?.createdAt], callback);
   },
 
-  updateCategory: (userId, user, callback) => {
-    db.query('UPDATE categories SET name = ?, email = ? WHERE id = ?', [user.name, user.email, userId], callback);
+  updateCategory: (categoryId, data, callback) => {
+    db.query('UPDATE categories SET label =?, value=?, count=?, updatedAt=? WHERE id = ?', [data?.label,data?.value,data?.count,data?.updatedAt, categoryId], callback);
   },
 
   deleteCategory: (userId, callback) => {
