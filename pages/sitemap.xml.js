@@ -13,7 +13,6 @@ function generateSiteMap(posts) {
          return `
        <url>
            <loc>${`${process.env.NEXT_PUBLIC_SITE_URL}/file/${id}`}</loc>
-           <lastmod>${createdAt}</lastmod>
            <changefreq>daily</changefreq>
            <priority>0.5</priority>
        </url>
