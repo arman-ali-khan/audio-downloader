@@ -26,8 +26,8 @@ const Card = ({ file }) => {
         onMouseLeave={() => setHover(false)}
         className={`w-full ${
           hover
-            ? "md:h-auto backdrop-blur-lg backdrop-hue-rotate-30 md:absolute"
-            : "md:h-full"
+            ? "md:h-auto backdrop-blur-lg backdrop-hue-rotate-30 backdrop-contrast-125 md:absolute"
+            : "md:h-full bg-base-200"
         } rounded-md  border z-50 md:hover:scale-150 duration-300 text-info`}
       >
         <div>
@@ -65,7 +65,7 @@ const Card = ({ file }) => {
             <>
               {/* Artist */}
               <div className="gap-2 text-xs truncate hidden md:flex">
-                <p className=" text-gray-600">Artist:</p>
+                <p className=" text-gray-200">Artist:</p>
                 {artist?.length && artist?.map((category, i) => (
                   <p key={i} className="text-blue-500" href={`/artist/${category?.value}`}>
                     {category?.value},
@@ -74,7 +74,7 @@ const Card = ({ file }) => {
               </div>
               {/* Category */}
               <div className="gap-2 text-xs hidden md:flex truncate">
-                <p className=" text-gray-600">Category:</p>
+                <p className=" text-gray-200">Category:</p>
                 {categories?.length && categories?.map((category, i) => (
                   <Link key={i} className="text-blue-500" href={`/category/${category?.label}`}>
                     {category?.value} |
@@ -83,17 +83,17 @@ const Card = ({ file }) => {
               </div>
               {/* File size */}
               <div className="gap-2 text-xs hidden md:flex">
-                <p className=" text-gray-600">File size:</p>
+                <p className=" text-gray-200">File size:</p>
                 <p>{file?.fileSize}</p>
               </div>
               {/* Total Download */}
               <div className="gap-2 text-xs hidden md:flex">
-                <p className=" text-gray-600">Downloaded:</p>
+                <p className=" text-gray-200">Downloaded:</p>
                 <p>{file?.totalDownload||0}</p>
               </div>
               {/* Date */}
               <div className="gap-2 text-xs hidden md:flex">
-                <p className=" text-gray-600">Date:</p>
+                <p className=" text-gray-200">Date:</p>
                 <p>{moment(file?.createdAt).fromNow()} </p>
               </div>
               {/* URL */}
