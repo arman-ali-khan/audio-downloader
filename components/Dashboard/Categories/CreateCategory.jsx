@@ -10,10 +10,10 @@ function CreateCategory() {
             "value":data?.value,
             "label":data?.label.split(' ').join('-').toLowerCase(),
             "count":0,
-            createdAt:new Date().toISOString()
+            "createdAt":new Date().toISOString()
         }
 
-        axios.post(`https://apiradio.arman.top/0.1/api/category`,categoryData)
+        axios.post(`${process.env.NEXT_PUBLIC_API_PRO}/category`,categoryData)
         .then(res=>{
             console.log(res.data)
             toast.success('Category Created')

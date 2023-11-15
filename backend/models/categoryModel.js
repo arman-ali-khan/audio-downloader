@@ -41,7 +41,7 @@ const CategoryModel = {
   },
 
   createCategory: (data, callback) => {
-    db.query('INSERT INTO categories (value,label,count) VALUES (?,?,?,?)', [data?.value,data?.label,data?.count,data?.createdAt], callback);
+    db.query('INSERT INTO categories (value,label,count,createdAt) VALUES (?,?,?,?)', [data?.value,data?.label,data?.count,data?.createdAt], callback);
   },
 
   updateCategory: (categoryId, data, callback) => {

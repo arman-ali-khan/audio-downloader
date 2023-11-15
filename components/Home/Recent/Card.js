@@ -11,7 +11,7 @@ const Card = ({ file }) => {
 
   // handle download 
   const handleDownload = (url) =>{
-    axios.get(`https://apiradio.arman.top/0.1/api/download/${file?.id}`)
+    axios.get(`${process.env.NEXT_PUBLIC_API_PRO}/download/${file?.id}`)
     .then(res=>{
         // console.log(res.data)
         toast.success('Downloading...')

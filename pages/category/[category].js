@@ -24,7 +24,7 @@ const category = () => {
 
     useEffect(() => {
       axios
-        .get(`https://apiradio.arman.top/0.1/api/categoryPosts?value=${category}&limit=10&page=${page}&sort=desc`)
+        .get(`${process.env.NEXT_PUBLIC_API_PRO}/categoryPosts?value=${category}&limit=10&page=${page}&sort=desc`)
         .then(function (response) {
           setCategoryData(response.data?.episodes);
           setCount(response.data?.count)
@@ -99,14 +99,3 @@ const category = () => {
 
 export default category;
 
-// export async function getServerSideProps(context) {
-//     const { category,page } = context.query;
-//     console.log(context.query)
-//     // Fetch data for the given id
-//     const res = await fetch(`https://apiradio.arman.top/0.1/api/categoryPosts?value=${category}&limit=10&page=${page}&sort=desc`);
-//     const data = await res.json();
-  
-//     return {
-//       props: { data,category },
-//     };
-//   }

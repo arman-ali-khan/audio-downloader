@@ -18,7 +18,7 @@ const Recent = () => {
   useEffect(() => {
     axios
       .get(
-        `https://apiradio.arman.top/0.1/api/posts?limit=${size}&page=${page}&value=${tag}`
+        `${process.env.NEXT_PUBLIC_API_PRO}/posts?limit=${size}&page=${page}&value=${tag}`
       )
       .then(function (response) {
         setFiles(response.data?.episodes);

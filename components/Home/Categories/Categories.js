@@ -10,7 +10,7 @@ const Categories = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    axios.get(`https://apiradio.arman.top/0.1/api/categories?limit=1000&page=1`).then((res) => {
+    axios.get(`${process.env.NEXT_PUBLIC_API_PRO}/categories?limit=1000&page=1`).then((res) => {
       setCategories(res.data);
       setLoading(false);
     });

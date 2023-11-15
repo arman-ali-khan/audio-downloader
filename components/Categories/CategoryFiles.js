@@ -17,7 +17,7 @@ const CategoryFiles = ({label}) => {
 
   useEffect(() => {
     axios
-      .get(`https://apiradio.arman.top/0.1/api/categoryPosts?value=${label}&limit=10&page=${page}&sort=desc`)
+      .get(`${process.env.NEXT_PUBLIC_API_PRO}/categoryPosts?value=${label}&limit=10&page=${page}&sort=desc`)
       .then(function (response) {
         setFiles(response.data?.episodes);
         setCount(res.data?.count)

@@ -35,11 +35,10 @@ function Create() {
     };
     // console.log(e);
     axios
-      .post("https://apiradio.arman.top/0.1/api/posts", episodeData)
+      .post(`${process.env.NEXT_PUBLIC_API_PRO}/posts`, episodeData)
       .then((res) => {
         // console.log(res.data);
         toast.success("Episode created");
-        router.push('/')
       })
       .catch(function (error) {
         console.log(error);
@@ -48,7 +47,7 @@ function Create() {
 // get all categories 
 const [categoriesData,setCategoriesData] = useState([])
 useEffect(()=>{
-  axios.get(`https://apiradio.arman.top/0.1/api/categories?limit=10&page=0`)
+  axios.get(`${process.env.NEXT_PUBLIC_API_PRO}/categories?limit=10&page=0`)
   .then(res=>{
     // console.log(res.data)
     setCategoriesData(res.data)
