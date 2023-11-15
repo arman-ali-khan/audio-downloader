@@ -4,11 +4,11 @@ import React from "react";
 
 const Card = ({popular}) => {
   return (
-      <div className="w-full rounded-md hover:bg-base-200 border-b">
-        <Link className="flex w-full" href={`/file/${popular?.id}`}>
-          <div className="w-20 h-16 mr-2 overflow-hidden">
+      <div className="w-full hover:bg-base-200 border-b">
+        <Link className="flex w-full h-full" href={`/file/${popular?.id}`}>
+          <div className="w-20 h-full mr-1">
             <img
-              className="rounded-md h-20 w-20 object-cover"
+              className="rounded-md h-16 w-20 object-cover"
               src={popular?.thumbnail}
               alt=""
             />

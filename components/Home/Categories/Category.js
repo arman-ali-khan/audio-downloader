@@ -3,7 +3,7 @@ import React from 'react';
 
 const Category = ({category}) => {
     return (
-        <Link href={`/category/${category?.label}`} className="flex gap-2 my-1 hover:bg-base-200 px-2 py-1">
+        <Link href={`/category/${category?.label}`} className={`flex gap-2 my-1 hover:bg-base-200 px-2 py-1 ${category?.count===0 ? 'hidden':''}`}>
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
