@@ -1,4 +1,5 @@
 import moment from "moment";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -31,7 +32,7 @@ const Card = ({ file }) => {
         } rounded-md  border z-50 md:hover:scale-150 duration-300 text-info`}
       >
         <div>
-          <img
+          <Image width={400} height={400}
             className={`rounded-t-md ${
               hover ? "md:h-24" : "md:h-24"
             } w-full object-cover`}
