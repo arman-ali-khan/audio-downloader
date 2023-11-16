@@ -51,10 +51,10 @@ const UserModel = {
     );
   },
 
-  updatePost: (userId, user, callback) => {
+  updatePost: (postId, data, callback) => {
     db.query(
-      "UPDATE episode SET name = ?, email = ? WHERE id = ?",
-      [user.name, user.email, userId],
+      "UPDATE episode SET ? WHERE id = ?",
+      [data, postId],
       callback
     );
   },
@@ -87,9 +87,9 @@ const UserModel = {
       db.query(query, [parseInt(count) + 1, label], callback);
     });
   },
-  popularPosts: (callback) => {
-    const sql = `SELECT * FROM episode WHERE createdAt >= NOW() - INTERVAL 10 DAY ORDER BY totalDownload DESC
-    LIMIT 5`;
+  popularPosts: (limit,days,callback) => {
+    const sql = `SELECT * FROM episode WHERE createdAt >= NOW() - INTERVAL ${days} DAY ORDER BY totalDownload DESC
+    LIMIT ${limit}`;
     db.query(sql, callback);
   },
 

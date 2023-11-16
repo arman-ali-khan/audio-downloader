@@ -6,7 +6,7 @@ const Popular = () => {
   const [loading, setLoading] = useState(true);
   const [populars, setPopulars] = useState([]);
   useEffect(() => {
-    axios.get(`${process.env.NEXT_PUBLIC_API_PRO}/popular-posts`).then((res) => {
+    axios.get(`${process.env.NEXT_PUBLIC_API_PRO}/popular-posts?days=15&limit=10`).then((res) => {
       setPopulars(res.data);
       setLoading(false);
     });

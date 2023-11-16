@@ -15,7 +15,9 @@ const Card = ({popular}) => {
           </div>
           <div className="px-1 w-full">
             <h3 className="font-semibold leading-4">
-              {popular?.title}
+            {popular?.title?.split(" ").length > 7
+                  ? popular?.title.split(" ").slice(0, 8).join(" ")
+                  : popular?.title}
             </h3>
             <span className="text-xs">{popular?.fileSize}</span> | <span className="text-xs">{moment(popular?.createdAt).fromNow()}</span>
           </div>

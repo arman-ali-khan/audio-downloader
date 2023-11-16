@@ -28,7 +28,9 @@ const UserController = {
   },
 
   popularPosts: (req, res) => {
-    UserModel.popularPosts((err, user) => {
+    const limit = req.query.limit||5
+    const days = req.query.days||7
+    UserModel.popularPosts(limit,days,(err, user) => {
       if (err) {
         res.status(500).json({ error: err.message });
         return;
@@ -67,13 +69,10 @@ const UserController = {
   },
 
   updatePost: (req, res) => {
-    const userId = req.params.id;
-    const user = {
-      name: req.body.name,
-      email: req.body.email,
-    };
+    const postId = req.params.id;
+    const data = req.body
 
-    UserModel.updatePost(userId, user, (err, result) => {
+    UserModel.updatePost(postId, data, (err, result) => {
       if (err) {
         res.status(500).json({ error: err.message });
         return;

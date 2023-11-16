@@ -30,13 +30,13 @@ function SingleEpisode({file}) {
                     <Popular />
                 </div>
                 <div className='md:w-6/12'>
-                <div  class="flex flex-col items-center justify-center w-full mx-auto">
-    <div style={{backgroundImage:`url(${file?.thumbnail})`}} class="w-full h-64 bg-gray-300 bg-center bg-cover rounded-lg shadow-md" ></div>
+                <div  className="flex flex-col items-center justify-center w-full mx-auto">
+    <div style={{backgroundImage:`url(${file?.thumbnail})`}} className="w-full h-64 bg-gray-300 bg-center bg-cover rounded-lg shadow-md" ></div>
 
-    <div class="sm:w-[550px] w-full mx-3 sm:mx-0 -mt-10 overflow-hidden bg-base-200 p-4 rounded-lg shadow-lg">
-        <h3 class="py-2 font-bold tracking-wide text-center  uppercase ">{file?.title}</h3>
+    <div className="sm:w-[550px] w-full mx-3 sm:mx-0 -mt-10 overflow-hidden bg-base-200 p-4 rounded-lg shadow-lg">
+        <h3 className="py-2 font-bold tracking-wide text-center  uppercase ">{file?.title}</h3>
 
-        <div class="flex flex-col gap-2 justify-between  px-3 py-2 ">
+        <div className="flex flex-col gap-2 justify-between  px-3 py-2 ">
             {/* Title */}
            <div className='flex gap-2'>
             <p className='font-bold'>Title:</p>
@@ -81,11 +81,11 @@ function SingleEpisode({file}) {
             {/* Tags */}
             <div className='flex gap-2'>
             <p className='font-bold'>Tags:</p>
-            <p className="flex items-center gap-1">
+            <div className="flex items-center gap-1">
                 {tags?.length ?
                     tags?.map((tag,i)=><p key={i} className='text-blue-500' href={`/tag/${tag?.value}`}>{tag?.value}<span className='text-black'>,</span></p>):''
                 }
-            </p>
+            </div>
            </div>
         </div>
     </div>

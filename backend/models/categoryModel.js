@@ -5,8 +5,8 @@ const CategoryModel = {
         const limitID = limit||1000
         const offsetID = db.offset || 0;
         
-            const query =  `SELECT * FROM categories ORDER BY date DESC LIMIT ${limit} OFFSET ${offset}`  
-            db.query('SELECT * FROM categories ORDER BY createdAt DESC LIMIT ? OFFSET ?', [limitID, offsetID], callback);    
+            const query =  `SELECT * FROM categories ORDER BY value DESC LIMIT ${limit} OFFSET ${offset}`  
+            db.query('SELECT * FROM categories ORDER BY value ASC LIMIT ? OFFSET ?', [limitID, offsetID], callback);    
        
   },
 
