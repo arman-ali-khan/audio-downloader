@@ -4,7 +4,7 @@ import RSS from 'rss';
 
 const generateRSSFeed = async () => {
   // Fetch data from the API
-  const apiUrl = 'https://apiradio.arman.top/0.1/api/posts';
+  const apiUrl = `${process.env.NEXT_PUBLIC_API_PRO}/posts?limit=5000`;
   const response = await fetch(apiUrl);
   const posts = await response.json();
 
