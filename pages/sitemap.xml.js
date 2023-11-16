@@ -29,7 +29,7 @@ function SiteMap() {
 
 export async function getServerSideProps({ res }) {
   // We make an API call to gather the URLs for our site
-  const request = await fetch(`${process.env.NEXT_PUBLIC_API_PRO}/posts`);
+  const request = await fetch(`${process.env.NEXT_PUBLIC_API_PRO}/posts?limit=5000`);
   const posts = await request.json();
 
   // We generate the XML sitemap with the posts data
