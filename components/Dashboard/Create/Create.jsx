@@ -18,6 +18,9 @@ function Create() {
     const [tags,setTags] = useState([])
     // artist
     const [artist,setArtist] = useState([])
+
+     // loading
+     const [loading,setLoading] = useState(false)
   const handleCreateEpisode = (e) => {
     const episodeData = {
       title: e.title,
@@ -39,6 +42,7 @@ function Create() {
       .then((res) => {
         // console.log(res.data);
         toast.success("Episode created");
+        setLoading(!loading)
       })
       .catch(function (error) {
         console.log(error);
@@ -52,7 +56,7 @@ useEffect(()=>{
     // console.log(res.data)
     setCategoriesData(res.data)
   })
-},[])
+},[loading])
   return (
     <div className="w-full sm:w-96 mx-auto">
       <form onSubmit={handleSubmit(handleCreateEpisode)} className="w-full capitalize">
