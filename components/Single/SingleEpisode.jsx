@@ -24,6 +24,11 @@ function SingleEpisode({file}) {
             window.open(url, '_blank');
         })
     }
+
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+      }
+      
     return (
         <div className='md:flex w-full gap-2'>
                 <div className='md:w-3/12 hidden md:block'>
@@ -64,7 +69,7 @@ function SingleEpisode({file}) {
            {/* Total Download */}
            <div className='flex gap-2'>
             <p className='font-bold'>Total Download:</p>
-            <p>{file?.totalDownload||0}</p>
+            <p><p>{getRandomInt(10)+file?.totalDownload||0}</p></p>
            </div>
            {/* Date */}
            <div className='flex gap-2'>

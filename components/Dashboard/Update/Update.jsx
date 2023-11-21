@@ -37,9 +37,9 @@ const handleUpdateEpisode = (e) => {
     updatedAt: Date(),
     downloadUrl: e.downloadUrl||file?.downloadUrl,
     fileSize: e.fileSize||file?.fileSize,
-    artist: JSON.stringify(artist||file?.artist),
-    categories: JSON.stringify(categories||file?.categories),
-    tags: JSON.stringify(tags||file?.tags),
+    artist: JSON.stringify(artist)||file?.artist,
+    categories: JSON.stringify(categories)||file?.categories,
+    tags: JSON.stringify(tags)||file?.tags,
   };
   // console.log(e);
   axios
@@ -121,14 +121,14 @@ axios.get(`${process.env.NEXT_PUBLIC_API_PRO}/categories?limit=100&page=0`)
         {/* artist */}
         <div className="flex flex-col">
           <label htmlFor="artist">artist</label>
-          <CreatableSelect defaultValue={file?.artist} onChange={(e)=>setArtist(e)} className="basic-multi-select" isMulti isClearable options={categoriesData} />
+          <CreatableSelect defaultValue={file?.artist&&JSON.parse(file?.artist)} onChange={(e)=>setArtist(e)} className="basic-multi-select" isMulti isClearable options={categoriesData} />
           
         </div>
      
         {/* Category */}
         <div className="flex flex-col">
           <label htmlFor="categories">categories</label>
-          <Select defaultValue={file?.categories}
+          <Select defaultValue={file?.categories && JSON.parse(file?.categories)}
             onChange={(e)=>setCategories(e)}
             isMulti
             name="colors"
@@ -140,7 +140,7 @@ axios.get(`${process.env.NEXT_PUBLIC_API_PRO}/categories?limit=100&page=0`)
         {/* Tags */}
         <div className="flex flex-col">
           <label htmlFor="tags">tags</label>
-          <CreatableSelect defaultValue={file?.tags} onChange={(e)=>setTags(e)} className="basic-multi-select" isMulti isClearable options={categoriesData} />
+          <CreatableSelect defaultValue={file?.tags&& JSON.parse(file?.tags)} onChange={(e)=>setTags(e)} className="basic-multi-select" isMulti isClearable options={categoriesData} />
           
         </div>
         {/* btn */}

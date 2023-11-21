@@ -18,13 +18,13 @@ const category = () => {
     const [count, setCount] = useState(0);
     // pagination
     const [page, setPage] = useState(0);
-    const [size, setSize] = useState(6);
+    const [size, setSize] = useState(12);
     // page count
     const pages = Math.ceil(count / size);
 
     useEffect(() => {
       axios
-        .get(`${process.env.NEXT_PUBLIC_API_PRO}/categoryPosts?value=${category}&limit=10&page=${page}&sort=desc`)
+        .get(`${process.env.NEXT_PUBLIC_API_PRO}/categoryPosts?value=${category}&limit=${size}&page=${page}&sort=desc`)
         .then(function (response) {
           setCategoryData(response.data?.episodes);
           setCount(response.data?.count)
@@ -38,7 +38,7 @@ const category = () => {
     return (
         <Main title={`All files archived ${categoryTitle}`}>
             <div className='w-full md:flex gap-2'>
-        <div className='md:w-3/12'>
+        <div className='md:w-3/12 hidden sm:block'>
           <Popular />
         </div>
        {
@@ -89,6 +89,9 @@ const category = () => {
                 <p className='flex justify-center'>No data in {categoryTitle}</p>
             </div>
        }
+        <div className='md:w-3/12  sm:hidden'>
+          <Popular />
+        </div>
         <div className='md:w-3/12'>
           <Categories />
         </div>

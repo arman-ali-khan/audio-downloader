@@ -20,6 +20,10 @@ const Card = ({ file }) => {
     })
 }
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
   return (
     <div className="relative">
       <div
@@ -54,7 +58,7 @@ const Card = ({ file }) => {
               <h3
                 className={`font-semibold my-1 ${
                   hover ? "text-sm md:text-xs leading-3" : "text-sm"
-                } leading-3 md:leading-5`}
+                } leading-3 md:leading-4`}
               >
                 {file?.title?.split(" ").length > 7
                   ? file?.title.split(" ").slice(0, 8).join(" ")
@@ -90,7 +94,7 @@ const Card = ({ file }) => {
               {/* Total Download */}
               <div className="gap-2 text-xs hidden md:flex">
                 <p className=" text-gray-200">Downloaded:</p>
-                <p>{file?.totalDownload||0}</p>
+                <p>{getRandomInt(10)+file?.totalDownload||0}</p>
               </div>
               {/* Date */}
               <div className="gap-2 text-xs hidden md:flex">

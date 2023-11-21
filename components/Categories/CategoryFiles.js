@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Card from "../Home/Recent/Card";
 
-const CategoryFiles = ({label}) => {
+const CategoryFiles = ({ label }) => {
   const [loading, setLoading] = useState(true);
   const [tag, setTag] = useState("funny");
   //   Loaded files
@@ -17,14 +17,16 @@ const CategoryFiles = ({label}) => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_PRO}/categoryPosts?value=${label}&limit=10&page=${page}&sort=desc`)
+      .get(
+        `${process.env.NEXT_PUBLIC_API_PRO}/categoryPosts?value=${label}&limit=10&page=${page}&sort=desc`
+      )
       .then(function (response) {
         setFiles(response.data?.episodes);
-        setCount(res.data?.count)
+        setCount(res.data?.count);
         setLoading(false);
       });
   }, [tag, page]);
-// console.log(files)
+  // console.log(files)
   return (
     <div>
       {/* Home tags */}
@@ -46,13 +48,13 @@ const CategoryFiles = ({label}) => {
       {/* pagination */}
       <div className="flex justify-center w-full my-3">
         <div className="btn-group">
-          {[...Array(pages).keys()].map((item,number) => (
+          {[...Array(pages).keys()].map((item, number) => (
             <button
               disabled={page === number}
               key={number}
               onClick={() => setPage(number)}
               onClickCapture={() => setLoading(true)}
-              className={`btn btn-xs md:btn-sm ${
+              className={`btn btn-sm md:btn-md ${
                 page === number ? "btn-primary" : "btn-ghost"
               } border shadow-lg disabled:bg-primary disabled:text-white`}
             >

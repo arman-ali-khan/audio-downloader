@@ -1,11 +1,14 @@
 import AdminLayout from "../../../Layout/AdminLayout";
 import Update from "../../../components/Dashboard/Update/Update";
+import PrivateRoutes from "../../../routes/PrivateRoutes";
 
 function updateId() {
     return (
-        <AdminLayout title={'Update posts'}>
+        <PrivateRoutes>
+            <AdminLayout title={'Update posts'}>
             <Update />
         </AdminLayout>
+        </PrivateRoutes>
     );
 }
 

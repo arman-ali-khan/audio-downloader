@@ -61,7 +61,7 @@ const Recent = () => {
               key={number}
               onClick={() => setPage(number)}
               onClickCapture={() => setLoading(true)}
-              className={`btn btn-xs md:btn-sm ${
+              className={`btn btn-sm md:btn-md ${
                 page === number ? "btn-primary" : "btn-ghost"
               } border shadow-lg disabled:bg-primary disabled:text-white`}
             >

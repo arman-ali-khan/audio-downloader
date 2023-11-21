@@ -1,11 +1,14 @@
 import AdminLayout from "../../../Layout/AdminLayout";
 import Categories from "../../../components/Dashboard/Categories/Categories";
+import PrivateRoutes from "../../../routes/PrivateRoutes";
 
 function index() {
     return (
-        <AdminLayout title={'Categories'}>
+      <PrivateRoutes>
+          <AdminLayout title={'Categories'}>
             <Categories />
         </AdminLayout>
+      </PrivateRoutes>
     );
 }
 

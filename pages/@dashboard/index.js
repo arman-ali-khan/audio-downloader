@@ -1,12 +1,15 @@
 
 import AdminLayout from "../../Layout/AdminLayout";
 import Dashboard from "../../components/Dashboard/Dashboard";
+import PrivateRoutes from "../../routes/PrivateRoutes";
 
 function index() {
     return (
-        <AdminLayout title={'Dashboard'}>
+       <PrivateRoutes>
+         <AdminLayout title={'Dashboard'}>
             <Dashboard />
         </AdminLayout>
+       </PrivateRoutes>
     );
 }
 
