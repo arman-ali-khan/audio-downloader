@@ -15,7 +15,6 @@ function CreateCategory() {
 
         axios.post(`${process.env.NEXT_PUBLIC_API_PRO}/category`,categoryData)
         .then(res=>{
-            console.log(res.data)
             toast.success('Category Created')
             reset()
         })

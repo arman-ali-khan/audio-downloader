@@ -14,7 +14,6 @@ function PrivateRoutes({ children }) {
     process.env.NEXT_PUBLIC_ADMIN_EMAIL,
     localData?.data
   );
-  console.log(password,email)
   if (password && email) {
     return  children 
   }else{

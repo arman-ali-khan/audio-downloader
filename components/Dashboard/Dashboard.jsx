@@ -28,7 +28,6 @@ function Dashboard() {
         setLoading(false);
       });
   }, [tag, page]);
-  console.log()
     return (
         <div className="w-full">
         <div className="h-full">
