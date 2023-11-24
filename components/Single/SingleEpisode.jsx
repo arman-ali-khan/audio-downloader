@@ -9,7 +9,7 @@ import Popular from "../Home/Popular/Popular";
 function SingleEpisode({file}) {
     const categories = file?.categories&&JSON.parse(file?.categories)
     const tags =file?.tags&& JSON.parse(file?.tags)
-    const artist = file?.artist&&JSON.parse(file?.artist)
+    // const artist = file?.artist&&JSON.parse(file?.artist)
 
     // router
     const router = useRouter()
@@ -48,12 +48,12 @@ function SingleEpisode({file}) {
             <p>{file?.title}</p>
            </div>
            {/* Artist */}
-           <div className='flex gap-2'>
+           {/* <div className='flex gap-2'>
             <p className='font-bold'>Artist:</p>
             {artist?.length ?
                 artist?.map((category,i)=><p key={i} className='text-blue-500' href={`/category/${category?.value}`}>{category?.label},</p>):''
             }
-           </div>
+           </div> */}
            {/* Category */}
            <div className='flex gap-2'>
             <p className='font-bold'>Category:</p>
@@ -69,7 +69,7 @@ function SingleEpisode({file}) {
            {/* Total Download */}
            <div className='flex gap-2'>
             <p className='font-bold'>Total Download:</p>
-            <p><p>{getRandomInt(10)+file?.totalDownload||0}</p></p>
+           <p>{getRandomInt(10)+file?.totalDownload||0}</p>
            </div>
            {/* Date */}
            <div className='flex gap-2'>

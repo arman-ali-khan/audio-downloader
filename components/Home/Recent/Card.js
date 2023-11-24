@@ -6,10 +6,8 @@ import React, { useState } from "react";
 
 const Card = ({ file }) => {
   const [hover, setHover] = useState(false);
-// console.log(file)
-  const categories = JSON.parse(file?.categories)
-  const artist = JSON.parse(file?.artist)
-
+  const categories = JSON?.parse(file?.categories)
+  // const artist =  JSON?.parse(parse(file?.artist))
   // handle download 
   const handleDownload = (url) =>{
     axios.get(`${process.env.NEXT_PUBLIC_API_PRO}/download/${file?.id}`)
@@ -69,14 +67,14 @@ function getRandomInt(max) {
           {hover && (
             <>
               {/* Artist */}
-              <div className="gap-2 text-xs truncate hidden md:flex">
+              {/* <div className="gap-2 text-xs truncate hidden md:flex">
                 <p className=" text-gray-200">Artist:</p>
                 {artist?.length && artist?.map((category, i) => (
                   <p key={i} className="text-blue-500" href={`/artist/${category?.value}`}>
                     {category?.value},
                   </p>
                 ))}
-              </div>
+              </div> */}
               {/* Category */}
               <div className="gap-2 text-xs hidden md:flex truncate">
                 <p className=" text-gray-200">Category:</p>
