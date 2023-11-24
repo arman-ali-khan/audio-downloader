@@ -7,7 +7,7 @@ const FileCard = ({ file }) => {
   const [hover, setHover] = useState(false);
 // console.log(file)
   const categories = JSON.parse(file?.categories)
-  const artist = JSON.parse(file?.artist)
+  // const artist = JSON.parse(file?.artist)
 
   // handle download 
   const handleDownload = (url) =>{
