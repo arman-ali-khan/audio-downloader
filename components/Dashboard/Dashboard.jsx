@@ -29,7 +29,7 @@ function Dashboard() {
       });
   }, [tag, page]);
     return (
-        <div className="w-full">
+        <div className="w-full mb-6">
         <div className="h-full">
           {/* Home tags */}
           {/* <Tags tag={tag} setTag={setTag} /> */}
@@ -54,7 +54,7 @@ function Dashboard() {
           </div>
         </div>
         {/* pagination */}
-        <div className="flex justify-center w-full my-6">
+        <div className="flex justify-center w-full mb-3">
           <div className="btn-group">
             {[...Array(pages).keys()].map((number) => (
               <button

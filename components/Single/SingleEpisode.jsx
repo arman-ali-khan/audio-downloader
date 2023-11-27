@@ -13,6 +13,7 @@ function SingleEpisode({file}) {
 
     // router
     const router = useRouter()
+    console.log(file,'videoData')
 
 
     // handle download 
@@ -69,7 +70,7 @@ function SingleEpisode({file}) {
            {/* Total Download */}
            <div className='flex gap-2'>
             <p className='font-bold'>Total Download:</p>
-           <p>{getRandomInt(10)+file?.totalDownload||0}</p>
+           <p>{file?.totalDownload||0}</p>
            </div>
            {/* Date */}
            <div className='flex gap-2'>
@@ -88,7 +89,8 @@ function SingleEpisode({file}) {
             <p className='font-bold'>Tags:</p>
             <div className="flex items-center gap-1">
                 {tags?.length ?
-                    tags?.map((tag,i)=><p key={i} className='text-blue-500' href={`/tag/${tag?.value}`}>{tag?.value}<span className='text-black'>,</span></p>):''
+                    tags?.map((tag,i)=><p key={i} className='text-blue-500' href={`/tag/${tag?.value}`}>{tag?.value}<span className='text-black'>,</span></p>):
+                    file?.videoData?.tags && file?.videoData?.tags?.map((tag,i)=><p key={i} className='text-blue-500' href={`/tag/${tag?.value}`}>{tag?.value}<span className='text-black'>,</span></p>)
                 }
             </div>
            </div>

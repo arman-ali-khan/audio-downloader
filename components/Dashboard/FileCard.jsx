@@ -24,9 +24,9 @@ const FileCard = ({ file }) => {
       <div
         className={`w-full flex rounded-md  border z-50 duration-300 text-info`}
       >
-        <div>
+        <div className="w-12 sm:w-32 h-12 sm:h-auto">
           <img
-            className={`rounded-t-md w-32 h-24`}
+            className={`rounded-t-md w-12 h-12 sm:h-full sm:w-full`}
             src={file?.thumbnail}
             alt=""
           />
@@ -56,7 +56,7 @@ const FileCard = ({ file }) => {
         
             <>
               {/* Total Download */}
-              <div className="gap-2 text-xs hidden md:flex">
+              <div className="gap-2 text-xs flex">
                 <p className=" text-gray-200">Downloaded:</p>
                 <p>{file?.totalDownload||0}</p>
               </div>

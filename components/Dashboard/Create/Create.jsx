@@ -14,18 +14,27 @@ function Create() {
     const { register, handleSubmit } = useForm();
     // categories
     const [categories,setCategories] = useState([])
+    const [ytThumb,setYTThumb] = useState('')
+    // thumb
+    const [thumb,setThumb] = useState('')
+    // api data
+    const [apiData,setApiData] = useState({})
     // tags
     const [tags,setTags] = useState([])
     // artist
     const [artist,setArtist] = useState([])
+    // title
+    const [title,setTitle] = useState('')
+    const [description,setDescription] = useState('')
 
      // loading
      const [loading,setLoading] = useState(false)
   const handleCreateEpisode = (e) => {
     const episodeData = {
-      title: e.title,
-      description: e.description,
-      thumbnail: e.thumbnail,
+      title: e.title||title,
+      videoData:apiData&&apiData?.items[0]?.snippet,
+      description: e.description||description,
+      thumbnail: e.thumbnail||thumb,
       createdAt: Date(),
       author: "",
       updatedAt: Date(),
@@ -34,7 +43,6 @@ function Create() {
       embedCode: JSON.stringify(e.embedCode),
       artist: JSON.stringify(artist),
       categories: JSON.stringify(categories),
-      tags: JSON.stringify(tags),
     };
     // console.log(e);
     axios
@@ -57,15 +65,34 @@ useEffect(()=>{
     setCategoriesData(res.data)
   })
 },[loading])
+const ytthumb = ytThumb?.length && ytThumb?.split('=')[1].split('&')[0]
+
+// get data via api
+useEffect(()=>{
+  setTitle('')
+  setDescription('')
+  axios.get(`https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=${ytthumb}&key=AIzaSyDRkhrFiWaeIQNSKeNkSlxI39cwLlh9l8c`)
+  .then(res=>{
+    setApiData(res.data)
+    setTitle(ytthumb.length&&apiData?.items[0]?.snippet?.title)
+    setDescription(ytthumb.length&&apiData?.items[0]?.snippet?.description)
+    setTags(ytthumb.length&&apiData?.items[0]?.snippet?.tags)
+  })
+},[ytThumb,thumb])
+console.log(ytthumb.length&&apiData?.items)
+
+
+console.log(title,description)
   return (
     <div className="w-full sm:w-96 mx-auto">
       <form onSubmit={handleSubmit(handleCreateEpisode)} className="w-full capitalize">
         <div className="flex mx-auto flex-col w-full sm:w-96">
-          <label htmlFor="title">Title</label>
-          <input
-            {...register("title", { required: true })}
+        <label htmlFor="title">Title</label>
+        <p className="border truncate">{title}</p>
+          <input  hidden={title?.length}
+            {...register("title", { required: false })}
             className="input w-full input-bordered"
-            placeholder="Title"
+            defaultValue={title}
             type="text"
             id="title"
           />
@@ -74,10 +101,11 @@ useEffect(()=>{
 
         <div className="flex flex-col">
           <label htmlFor="description">description</label>
-          <textarea
-            {...register("description", { required: true })}
+          <p className="border truncate">{description}</p>
+          <textarea hidden={description?.length}
+            {...register("description", { required: false })}
             className="textarea w-full textarea-bordered"
-            placeholder="description"
+          
             id="description"
           />
         </div>
@@ -85,9 +113,30 @@ useEffect(()=>{
         <div className="flex flex-col">
           <label htmlFor="thumbnail">thumbnail</label>
           <input
-            {...register("thumbnail", { required: true })}
+            {...register("thumbnail", { required: false })}
             className="input w-full input-bordered"
             placeholder="thumbnail"
+            type="text"
+            id="thumbnail"
+          />
+        </div>
+        {/* yt thumbnail */}
+        <div className="flex flex-col">
+          <div className="flex justify-between my-4">
+
+          <img onClick={()=>setThumb(`https://res.cloudinary.com/dcckbmhft/image/upload/v1700010854/bhoot.png`)} className={`w-12 ${thumb===`https://res.cloudinary.com/dcckbmhft/image/upload/v1700010854/bhoot.png` ? 'bg-white p-1':''}`} src={`https://res.cloudinary.com/dcckbmhft/image/upload/v1700010854/bhoot.png`} alt="" />
+
+          <img onClick={()=>setThumb(`https://img.youtube.com/vi/${ytthumb}/maxresdefault.jpg`)} className={`w-12 ${thumb===`https://img.youtube.com/vi/${ytthumb}/maxresdefault.jpg` ? 'bg-white p-1':''}`} src={`https://img.youtube.com/vi/${ytthumb}/maxresdefault.jpg`} alt="" />
+
+          <img onClick={()=>setThumb(`https://img.youtube.com/vi/${ytthumb}/hqdefault.jpg`)} className={`w-12 ${thumb===`https://img.youtube.com/vi/${ytthumb}/hqdefault.jpg` ? 'bg-white p-1':''}`} src={`https://img.youtube.com/vi/${ytthumb}/hqdefault.jpg`} alt="" />
+
+
+          <img onClick={()=>setThumb(`https://img.youtube.com/vi/${ytthumb}/mqdefault.jpg`)} className={`w-12 ${thumb===`https://img.youtube.com/vi/${ytthumb}/mqdefault.jpg` ? 'bg-white p-1':''}`} src={`https://img.youtube.com/vi/${ytthumb}/mqdefault.jpg`} alt="" />
+          </div>
+          <label htmlFor="thumbnail">YT Thumbnail</label>
+          <input
+          onChange={e=>setYTThumb(e.target.value)}
+            className="input w-full input-bordered"
             type="text"
             id="thumbnail"
           />
@@ -98,7 +147,6 @@ useEffect(()=>{
           <input
             {...register("downloadUrl", { required: true })}
             className="input w-full input-bordered"
-            placeholder="download"
             type="text"
             id="download"
           />
@@ -109,15 +157,14 @@ useEffect(()=>{
           <input
             {...register("fileSize", { required: true })}
             className="input w-full input-bordered"
-            placeholder="File Size"
             type="text"
             id="embed"
           />
         </div>
         {/* artist */}
         <div className="flex flex-col">
-          <label htmlFor="artist">artist</label>
-          <CreatableSelect onChange={(e)=>setArtist(e)} className="basic-multi-select" isMulti isClearable options={categoriesData} />
+          {/* <label htmlFor="artist">artist</label> */}
+          {/* <CreatableSelect onChange={(e)=>setArtist(e)} className="basic-multi-select" isMulti isClearable options={categoriesData} /> */}
           {/* <Select
             onChange={(e)=>setArtist(e)}
             isMulti
@@ -157,6 +204,7 @@ useEffect(()=>{
         {/* Tags */}
         <div className="flex flex-col">
           <label htmlFor="tags">tags</label>
+        
           <CreatableSelect onChange={(e)=>setTags(e)} className="basic-multi-select" isMulti isClearable options={categoriesData} />
           {/* <input
             {...register("tags", { required: true })}

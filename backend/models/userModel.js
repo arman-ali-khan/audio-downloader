@@ -35,7 +35,7 @@ const UserModel = {
   createPost: (data, callback) => {
     // console.log(data,'data')
     db.query(
-      "INSERT INTO episode (title,description,createdAt,thumbnail,downloadUrl,fileSize,artist,categories,tags) VALUES (?,?,?,?,?,?,?,?,?)",
+      "INSERT INTO episode (title,description,createdAt,thumbnail,downloadUrl,fileSize,artist,categories,tags,videoData) VALUES (?,?,?,?,?,?,?,?,?,?)",
       [
         data.title,
         data.description,
@@ -46,6 +46,7 @@ const UserModel = {
         data.artist,
         data.categories,
         data.tags,
+        data.videoData,
       ],
       callback
     );

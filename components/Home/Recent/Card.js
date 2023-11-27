@@ -1,26 +1,32 @@
+import axios from "axios";
 import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 
 const Card = ({ file }) => {
   const [hover, setHover] = useState(false);
+  const [loading,setLoading] = useState(false)
   const categories = JSON?.parse(file?.categories)
   // const artist =  JSON?.parse(parse(file?.artist))
   // handle download 
   const handleDownload = (url) =>{
+    setLoading(true)
     axios.get(`${process.env.NEXT_PUBLIC_API_PRO}/download/${file?.id}`)
     .then(res=>{
-        // console.log(res.data)
-        toast.success('Downloading...')
-        window.open(url, '_blank');
+      // console.log(res.data)
+      toast.success('Downloading...')
+      setLoading(false)
+      window.open(url, '_blank');
+    })
+    .catch(err=>{
+      setLoading(false)
+      console.error(err);
     })
 }
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
 
   return (
     <div className="relative">
@@ -92,7 +98,7 @@ function getRandomInt(max) {
               {/* Total Download */}
               <div className="gap-2 text-xs hidden md:flex">
                 <p className=" text-gray-200">Downloaded:</p>
-                <p>{getRandomInt(10)+file?.totalDownload||0}</p>
+                <p>{file?.totalDownload||0}</p>
               </div>
               {/* Date */}
               <div className="gap-2 text-xs hidden md:flex">
