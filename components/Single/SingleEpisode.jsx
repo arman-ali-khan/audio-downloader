@@ -75,7 +75,7 @@ function SingleEpisode({file}) {
            {/* Date */}
            <div className='flex gap-2'>
             <p className='font-bold'>Date:</p>
-            <p>{moment(file?.createdAt).fromNow()}</p>
+            <p>{moment(file?.createdAt).calendar()}</p>
            </div>
            {/* URL */}
            <div className='flex gap-2 justify-center'>

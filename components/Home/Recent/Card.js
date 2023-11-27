@@ -103,7 +103,7 @@ const Card = ({ file }) => {
               {/* Date */}
               <div className="gap-2 text-xs hidden md:flex">
                 <p className=" text-gray-200">Date:</p>
-                <p>{moment(file?.createdAt).fromNow()} </p>
+                <p>{moment(file?.createdAt).calendar()} </p>
               </div>
               {/* URL */}
               <div className="hidden md:flex gap-2 justify-center pb-3">
