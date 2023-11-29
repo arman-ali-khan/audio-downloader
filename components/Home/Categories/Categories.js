@@ -28,7 +28,7 @@ const Categories = () => {
             ></div>
           ))
         : categories.map((category) => (
-            <Category key={category._id} category={category} />
+            <Category key={category.id} category={category} />
           ))}
     </div>
   );

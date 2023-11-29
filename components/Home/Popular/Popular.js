@@ -31,8 +31,8 @@ const Popular = () => {
                 </div>
               </div>
             ))
-          : populars.map((popular) => (
-              <Card key={popular._id} popular={popular} />
+          : populars.map((popular,i) => (
+              <Card key={i} popular={popular} />
             ))}
       </div>
     </div>

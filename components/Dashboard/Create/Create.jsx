@@ -30,6 +30,7 @@ function Create() {
      // loading
      const [loading,setLoading] = useState(false)
   const handleCreateEpisode = (e) => {
+    setLoading(true)
     const episodeData = {
       title: e.title||title,
       videoData:apiData&&apiData?.items[0]?.snippet,
@@ -41,7 +42,7 @@ function Create() {
       downloadUrl: e.downloadUrl,
       fileSize: e.fileSize,
       embedCode: JSON.stringify(e.embedCode),
-      artist: JSON.stringify(artist),
+      tags: tags?.length ? JSON.stringify(tags): JSON.stringify(apiData?.items[0]?.snippet?.tags),
       categories: JSON.stringify(categories),
     };
     // console.log(e);
@@ -50,10 +51,11 @@ function Create() {
       .then((res) => {
         // console.log(res.data);
         toast.success("Episode created");
-        setLoading(!loading)
+        setLoading(false)
       })
       .catch(function (error) {
         console.log(error);
+        setLoading(false)
       });
   };
 // get all categories 
@@ -65,7 +67,7 @@ useEffect(()=>{
     setCategoriesData(res.data)
   })
 },[loading])
-const ytthumb = ytThumb?.length && ytThumb?.split('=')[1].split('&')[0]
+const ytthumb = ytThumb?.length && ytThumb?.split('=')[1]?.split('&')[0]
 
 // get data via api
 useEffect(()=>{
@@ -74,22 +76,56 @@ useEffect(()=>{
   axios.get(`https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=${ytthumb}&key=AIzaSyDRkhrFiWaeIQNSKeNkSlxI39cwLlh9l8c`)
   .then(res=>{
     setApiData(res.data)
-    setTitle(ytthumb.length&&apiData?.items[0]?.snippet?.title)
-    setDescription(ytthumb.length&&apiData?.items[0]?.snippet?.description)
-    setTags(ytthumb.length&&apiData?.items[0]?.snippet?.tags)
+    setTitle(ytthumb?.length&&apiData?.items[0]?.snippet?.title)
+    setDescription(ytthumb?.length&&apiData?.items[0]?.snippet?.description)
+    setTags(ytthumb?.length&&apiData?.items[0]?.snippet?.tags)
   })
 },[ytThumb,thumb])
-console.log(ytthumb.length&&apiData?.items)
+console.log(ytthumb?.length&&apiData?.items)
 
 
 console.log(title,description)
   return (
-    <div className="w-full sm:w-96 mx-auto">
+    <div className="w-full sm:w-96 mx-auto text-white">
       <form onSubmit={handleSubmit(handleCreateEpisode)} className="w-full capitalize">
+   {/* yt thumbnail */}
+   <div className="flex flex-col">
+   <label htmlFor="thumbnail">YT URL</label>
+          <input
+          onChange={e=>setYTThumb(e.target.value)}
+            className="input w-full input-bordered"
+            type="text"
+            placeholder="https://www.youtube.com/watch?v=wwaNlKg3AXY&pp=ygUPc3VuZGF5IHN1c3BlbnNl"
+            id="thumbnail"
+          />
+          <div className="flex justify-between my-4">
+
+        <div className="flex items-center flex-col">
+        <img onClick={()=>setThumb(`https://res.cloudinary.com/dcckbmhft/image/upload/v1700010854/bhoot.png`)} className={`w-12 ${thumb===`https://res.cloudinary.com/dcckbmhft/image/upload/v1700010854/bhoot.png` ? 'bg-white p-1':''}`} src={`https://res.cloudinary.com/dcckbmhft/image/upload/v1700010854/bhoot.png`} alt="" />
+        <p className="text-xs">Bhoot.com</p>
+        </div>
+
+         <div className="flex items-center flex-col">
+         <img onClick={()=>setThumb(`https://img.youtube.com/vi/${ytthumb}/maxresdefault.jpg`)} className={`w-12 ${thumb===`https://img.youtube.com/vi/${ytthumb}/maxresdefault.jpg` ? 'bg-white p-1':''}`} src={`https://img.youtube.com/vi/${ytthumb}/maxresdefault.jpg`} alt="" />
+         <p className="text-xs">HD</p>
+         </div>
+
+          <div className="flex items-center flex-col">
+          <img onClick={()=>setThumb(`https://img.youtube.com/vi/${ytthumb}/hqdefault.jpg`)} className={`w-12 ${thumb===`https://img.youtube.com/vi/${ytthumb}/hqdefault.jpg` ? 'bg-white p-1':''}`} src={`https://img.youtube.com/vi/${ytthumb}/hqdefault.jpg`} alt="" />
+          <p className="text-xs">Default</p>
+          </div>
+
+
+          <div className="flex items-center flex-col">
+          <img onClick={()=>setThumb(`https://img.youtube.com/vi/${ytthumb}/mqdefault.jpg`)} className={`w-12 ${thumb===`https://img.youtube.com/vi/${ytthumb}/mqdefault.jpg` ? 'bg-white p-1':''}`} src={`https://img.youtube.com/vi/${ytthumb}/mqdefault.jpg`} alt="" />
+          <p className="text-xs">Small</p>
+          </div>
+          </div>
+         
+        </div>
         <div className="flex mx-auto flex-col w-full sm:w-96">
         <label htmlFor="title">Title</label>
-        <p className="border truncate">{title}</p>
-          <input  hidden={title?.length}
+          <textarea 
             {...register("title", { required: false })}
             className="input w-full input-bordered"
             defaultValue={title}
@@ -101,16 +137,15 @@ console.log(title,description)
 
         <div className="flex flex-col">
           <label htmlFor="description">description</label>
-          <p className="border truncate">{description}</p>
-          <textarea hidden={description?.length}
+          <textarea 
             {...register("description", { required: false })}
             className="textarea w-full textarea-bordered"
-          
+          defaultValue={description}
             id="description"
           />
         </div>
         {/* thumbnail */}
-        <div className="flex flex-col">
+        <div  className={`flex flex-col ${thumb?.length ? 'hidden':''}`}>
           <label htmlFor="thumbnail">thumbnail</label>
           <input
             {...register("thumbnail", { required: false })}
@@ -120,27 +155,7 @@ console.log(title,description)
             id="thumbnail"
           />
         </div>
-        {/* yt thumbnail */}
-        <div className="flex flex-col">
-          <div className="flex justify-between my-4">
-
-          <img onClick={()=>setThumb(`https://res.cloudinary.com/dcckbmhft/image/upload/v1700010854/bhoot.png`)} className={`w-12 ${thumb===`https://res.cloudinary.com/dcckbmhft/image/upload/v1700010854/bhoot.png` ? 'bg-white p-1':''}`} src={`https://res.cloudinary.com/dcckbmhft/image/upload/v1700010854/bhoot.png`} alt="" />
-
-          <img onClick={()=>setThumb(`https://img.youtube.com/vi/${ytthumb}/maxresdefault.jpg`)} className={`w-12 ${thumb===`https://img.youtube.com/vi/${ytthumb}/maxresdefault.jpg` ? 'bg-white p-1':''}`} src={`https://img.youtube.com/vi/${ytthumb}/maxresdefault.jpg`} alt="" />
-
-          <img onClick={()=>setThumb(`https://img.youtube.com/vi/${ytthumb}/hqdefault.jpg`)} className={`w-12 ${thumb===`https://img.youtube.com/vi/${ytthumb}/hqdefault.jpg` ? 'bg-white p-1':''}`} src={`https://img.youtube.com/vi/${ytthumb}/hqdefault.jpg`} alt="" />
-
-
-          <img onClick={()=>setThumb(`https://img.youtube.com/vi/${ytthumb}/mqdefault.jpg`)} className={`w-12 ${thumb===`https://img.youtube.com/vi/${ytthumb}/mqdefault.jpg` ? 'bg-white p-1':''}`} src={`https://img.youtube.com/vi/${ytthumb}/mqdefault.jpg`} alt="" />
-          </div>
-          <label htmlFor="thumbnail">YT Thumbnail</label>
-          <input
-          onChange={e=>setYTThumb(e.target.value)}
-            className="input w-full input-bordered"
-            type="text"
-            id="thumbnail"
-          />
-        </div>
+     
         {/* download url */}
         <div className="flex flex-col">
           <label htmlFor="download">download url</label>
@@ -215,8 +230,8 @@ console.log(title,description)
           /> */}
         </div>
         {/* btn */}
-        <div>
-          <button className="btn btn-success">Create</button>
+        <div className="my-12">
+          <button className="btn btn-success w-full">{loading ? 'Creating...':'Create'}</button>
         </div>
       </form>
     </div>

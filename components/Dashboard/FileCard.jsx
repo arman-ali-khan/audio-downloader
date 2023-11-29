@@ -1,21 +1,23 @@
+import axios from "axios";
 import moment from "moment";
 import Link from "next/link";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 
-const FileCard = ({ file }) => {
+const FileCard = ({ file,update,setUpdate }) => {
   const [hover, setHover] = useState(false);
 // console.log(file)
   const categories = JSON.parse(file?.categories)
   // const artist = JSON.parse(file?.artist)
 
   // handle download 
-  const handleDownload = (url) =>{
-    axios.get(`${process.env.NEXT_PUBLIC_API_PRO}/download/${file?.id}`)
+  const handleDelete = (url) =>{
+    axios.delete(`${process.env.NEXT_PUBLIC_API_PRO}/posts/${file?.id}`)
     .then(res=>{
         // console.log(res.data)
-        toast.success('Downloading...')
-        window.open(url, '_blank');
+        toast.success('Deleted')
+        setUpdate(!update)
     })
 }
 
@@ -66,7 +68,18 @@ const FileCard = ({ file }) => {
           <span className={`text-xs ${hover && "hidden"}`}>{moment(file?.createdAt).fromNow()}</span>
           <div className="flex items-center gap-2">
             <Link href={`/@dashboard/update/${file?.id}`} className="px-4 py-1 rounded bg-teal-100 text-teal-600">Edit</Link>
-            <button className="px-4 py-1 rounded bg-rose-100 text-rose-600">Delete</button>
+            <div className="dropdown">
+  <div tabIndex={0} role="button" className="px-4 py-1 rounded bg-rose-100 text-rose-600">Delete</div>
+  <ul className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-96 z-40 ">
+    <p>If you delete this file, this file can't be restore</p>
+    
+  <div className="flex items-center">
+  <span className="px-4 mx-12 my-3 py-1 rounded bg-teal-100 cursor-pointer text-teal-600">Cancel</span>
+  <button onClick={()=>handleDelete()} className="px-4 mx-12 my-3 py-1 rounded bg-rose-100 text-rose-600">Confirm</button>
+  </div>
+  </ul>
+</div>
+            
           </div>
         </div>
       </div>

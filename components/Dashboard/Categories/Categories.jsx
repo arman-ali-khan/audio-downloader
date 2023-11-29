@@ -25,8 +25,8 @@ const Categories = () => {
               className="w-full px-2 h-7 bg-gray-300 rounded-md animate-pulse my-1"
             ></div>
           ))
-        : categories.map((category) => (
-            <CategoryCard key={category._id} category={category} />
+        : categories.map((category,i) => (
+            <CategoryCard key={i} category={category} />
           ))}
     </div>
   );

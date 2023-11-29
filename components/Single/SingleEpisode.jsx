@@ -48,6 +48,7 @@ function SingleEpisode({file}) {
             <p className='font-bold'>Title:</p>
             <p>{file?.title}</p>
            </div>
+          
            {/* Artist */}
            {/* <div className='flex gap-2'>
             <p className='font-bold'>Artist:</p>
@@ -87,12 +88,16 @@ function SingleEpisode({file}) {
             {/* Tags */}
             <div className='flex gap-2'>
             <p className='font-bold'>Tags:</p>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center flex-wrap gap-1">
                 {tags?.length ?
-                    tags?.map((tag,i)=><p key={i} className='text-blue-500' href={`/tag/${tag?.value}`}>{tag?.value}<span className='text-black'>,</span></p>):
-                    file?.videoData?.tags && file?.videoData?.tags?.map((tag,i)=><p key={i} className='text-blue-500' href={`/tag/${tag?.value}`}>{tag?.value}<span className='text-black'>,</span></p>)
+                    tags?.map((tag,i)=><p key={i} className='text-blue-500' href={`/tag/${tag?.value}`}>{tag?.value ? tag?.value:tag}<span className='text-black'>,</span></p>):''
                 }
             </div>
+           </div>
+             {/* Description */}
+             <div className='flex gap-2'>
+            <p className='font-bold'>Description:</p>
+            <p>{file?.description}</p>
            </div>
         </div>
     </div>

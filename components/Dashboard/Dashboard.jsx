@@ -12,6 +12,7 @@ function Dashboard() {
     // pagination
     const [page, setPage] = useState(0);
     const [size, setSize] = useState(12);
+    const [update,setUpdate] = useState(false)
     // page count
     const pages = Math.ceil(count / size);
     // get all episodes
@@ -27,7 +28,7 @@ function Dashboard() {
         setCount(response.data?.count);
         setLoading(false);
       });
-  }, [tag, page]);
+  }, [tag, page,update]);
     return (
         <div className="w-full mb-6">
         <div className="h-full">
@@ -49,7 +50,7 @@ function Dashboard() {
                     </div>
                   ))
                 : // File card
-                allEpisodes?.map((file, i) => <FileCard file={file} key={i} />)}
+                allEpisodes?.map((file, i) => <FileCard setUpdate={setUpdate} update={update} file={file} key={i} />)}
             </div>
           </div>
         </div>
