@@ -14,14 +14,14 @@ const file = ({data:file}) => {
 
 export default file;
 
-export async function getServerSideProps(context) {
-    const { file } = context.query;
-    // console.log(file)
-    // Fetch data for the given id
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_PRO}/posts/${file}`);
-    const data = await res.json();
+// export async function getServerSideProps(context) {
+//     const { file } = context.query;
+//     // console.log(file)
+//     // Fetch data for the given id
+//     const res = await fetch(`${process.env.NEXT_PUBLIC_API_PRO}/posts/${file}`);
+//     const data = await res.json();
   
-    return {
-      props: { data },
-    };
-  }
+//     return {
+//       props: { data },
+//     };
+//   }

@@ -1,9 +1,6 @@
 import { Inter } from "next/font/google";
 import Main from "../Layout/Main";
-import Categories from "../components/Home/Categories/Categories";
-import Hero from "../components/Home/Hero/Hero";
-import Popular from "../components/Home/Popular/Popular";
-import Recent from "../components/Home/Recent/Recent";
+import Maintenance from "../components/Maintenance/Maintenance";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +15,7 @@ export default function Home() {
       }
       thumb={metaImage}
     >
-      <div>
+      {/* <div>
         <Hero />
       </div>
       <div className="w-full md:flex gap-2">
@@ -36,7 +33,8 @@ export default function Home() {
         </div>
       </div>
       <div></div>
-      <div></div>
+      <div></div> */}
+      <Maintenance />
     </Main>
   );
 }

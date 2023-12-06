@@ -1,12 +1,10 @@
-import Head from "next/head";
 import React from "react";
-import Footer from "../components/Shared/Footer/Footer";
-import Navbar from "../components/Shared/Navbar/Navbar";
+import Maintenance from "../components/Maintenance/Maintenance";
 
 const Main = ({ children, title, description, thumb, keyword }) => {
   return (
     <div>
-        <Navbar />
+        {/* <Navbar />
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} key="desc" />
@@ -22,7 +20,8 @@ const Main = ({ children, title, description, thumb, keyword }) => {
       </Head>
 
       <div>{children}</div>
-      <Footer />
+      <Footer /> */}
+      <Maintenance />
     </div>
   );
 };
